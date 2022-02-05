@@ -55,7 +55,7 @@ namespace CommandAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<CommandReadDto> UpdateCommand(int id, CommandUpdateDto commandUpdateDto)
+        public ActionResult UpdateCommand(int id, CommandUpdateDto commandUpdateDto)
         {
             var commandModelFromRepo = _repo.GetCommandById(id);
 
@@ -96,6 +96,16 @@ namespace CommandAPI.Controllers
             var result = _repo.SaveChanges();
 
             if (!result) { return StatusCode(500); }
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteCommand(int id)
+        {
+            var commandModelFromRepo = _repo.GetCommandById(id);
+            if (commandModelFromRepo == null) { return NotFound(); }
+            _repo.DeleteCommand(commandModelFromRepo);
+            _repo.SaveChanges();
             return NoContent();
         }
     }
