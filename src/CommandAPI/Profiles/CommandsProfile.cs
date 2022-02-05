@@ -10,6 +10,8 @@ namespace CommandAPI.Profiles
         {
             //Souce -> Target
             CreateMap<Command, CommandReadDto>();
+
+            CreateMap<CommandCreateDto, Command>();
         }
     }
 }
