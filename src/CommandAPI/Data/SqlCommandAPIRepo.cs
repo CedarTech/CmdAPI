@@ -45,7 +45,7 @@ namespace CommandAPI.Data
 
         public void UpdateCommand(Command cmd)
         {
-            throw new System.NotImplementedException();
+            //It's just a place holder, don't need to do anything when using Entity Framework
         }
     }
 }

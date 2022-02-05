@@ -5,6 +5,8 @@
 </PropertyGroup>
 <ItemGroup>
 <PackageReference Include="Automapper.Extensions.microsoft.dependencyInjection" Version="11.0.0" />
+<PackageReference Include="microsoft.aspnetcore.jsonpatch" Version="5.0.6" />
+<PackageReference Include="microsoft.aspnetcore.mvc.newtonsoftjson" Version="5.0.6" />
 <PackageReference Include="microsoft.entityframeworkcore" Version="5.0.6" />
 <PackageReference Include="microsoft.entityframeworkcore.design" Version="5.0.6">
 <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
