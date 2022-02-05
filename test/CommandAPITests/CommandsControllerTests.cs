@@ -50,6 +50,41 @@ namespace CommandAPITests
             configuration = null;
         }
 
+
+
+
+        [Fact]
+        public void GetCommandById_Returns404NotFound_WhenNonExistentIDProvided()
+        {
+            mockRepo.Setup(repo => repo.GetCommandById(0)).Returns(() => null);
+            var commandsController = new CommandsController(mockRepo.Object, mapper);
+
+            var result = commandsController.GetCommandById(0);
+
+            Assert.IsType<NotFoundResult>(result.Result);
+        }
+
+        [Fact]
+        public void GetCommandById_Returns200OK_WhenValidIDProvided()
+        {
+            mockRepo.Setup(repo => repo.GetCommandById(1)).Returns(() => new Command { Id = 1, HowTo = "mock", Platform = "Mock", CommandLine = "Mock" });
+            var commandsController = new CommandsController(mockRepo.Object, mapper);
+
+            var result = commandsController.GetCommandById(1);
+
+            Assert.IsType<OkObjectResult>(result.Result);
+        }
+        [Fact]
+        public void GetCommandById_ReturnsRightType_WhenValidIDProvided()
+        {
+            mockRepo.Setup(repo => repo.GetCommandById(1)).Returns(() => new Command { Id = 1, HowTo = "mock", Platform = "Mock", CommandLine = "Mock" });
+            var commandsController = new CommandsController(mockRepo.Object, mapper);
+
+            var result = commandsController.GetCommandById(1);
+
+            Assert.IsType<ActionResult<CommandReadDto>>(result);
+        }
+
         [Fact]
         public void GetAllCommands_ReturnsZeroItems_WhenDBIsEmpty()
         {
